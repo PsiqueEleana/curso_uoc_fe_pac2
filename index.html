@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Programa para solicitar números al usuario</title>
+</head>
+<body>
+	<button onclick="solicitarNumeros()">Solicitar números</button>
+
+	<script>
+		function solicitarNumeros() {
+			var num1 = parseInt(prompt("Ingrese el primer número (entre 1 y 50): "));
+			var num2 = parseInt(prompt("Ingrese el segundo número (entre 1 y 50): "));
+
+			if (num1 < 1 || num1 > 50 || num2 < 1 || num2 > 50) {
+				document.write("<p>Al menos uno de los números está fuera del rango permitido.</p>");
+			} else {
+				// Sumar ambos números
+				var suma = num1 + num2;
+				document.write("<p>La suma de los números es " + suma + ".</p>");
+
+				// Verificar si ambos números son primos
+				var esPrimo1 = esPrimo(num1);
+				var esPrimo2 = esPrimo(num2);
+				if (esPrimo1 && esPrimo2) {
+					document.write("<p>Ambos números ingresados son primos.</p>");
+				} else if (!esPrimo1 && !esPrimo2) {
+					document.write("<p>Ambos números ingresados no son primos.</p>");
+				} else {
+					document.write("<p>Al menos uno de los números ingresados no es primo.</p>");
+				}
+
+				// Verificar si ambos números son pares
+				if (num1 % 2 == 0 && num2 % 2 == 0) {
+					document.write("<p>Ambos números ingresados son pares.</p>");
+				} else if (num1 % 2 != 0 && num2 % 2 != 0) {
+					document.write("<p>Ambos números ingresados no son pares.</p>");
+				} else {
+					document.write("<p>Al menos uno de los números ingresados no es par.</p>");
+				}
+
+				// Imprimir números pares o impares según sea el caso
+				if (num1 < num2) {
+					document.write("<p>Números pares entre " +
+                        num1 + " y " + num2 + " en forma ascendente:</p>");
+				for (var i = num1; i <= num2; i++) {
+					if (i % 2 == 0) {
+						document.write(i + "<br>");
+					}
+				}
+			} else if (num1 > num2) {
+				document.write("<p>Números impares entre " + num1 + " y " + num2 + " en forma descendente:</p>");
+				for (var i = num1; i >= num2; i--) {
+					if (i % 2 != 0) {
+						document.write(i + "<br>");
+					}
+				}
+			} else {
+				document.write("<p>El número ingresado es " + num1 + " y es");
+				if (!esPrimo1) {
+					document.write(" no");
+				}
+				document.write(" primo y es");
+				if (num1 % 2 == 0) {
+					document.write(" par.</p>");
+				} else {
+					document.write(" impar.</p>");
+				}
+			}
+		}
+	}
+
+	function esPrimo(num) {
+		if (num < 2) {
+			return false;
+		}
+		for (var i = 2; i < num; i++) {
+			if (num % i == 0) {
+				return false;
+			}
+		}
+		return true;
+	}
+</script>
+</body>
+</html>
